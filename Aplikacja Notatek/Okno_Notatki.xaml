@@ -1,0 +1,35 @@
+﻿<Window x:Class="Aplikacja_Notatek.Okno_Notatki"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Aplikacja_Notatek"
+        mc:Ignorable="d"
+        Title="Okno_Notatki" Height="450" Width="470" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170" />
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        
+
+
+        <TextBlock Grid.Column="0" Text="LISTA NOTATEK" VerticalAlignment="Top"
+                 HorizontalAlignment="Center" MaxWidth="630"/>
+        
+        <TextBox x:Name="PoleNotatki" Grid.Column="1" Text="TRESC NOTATKI"/>
+        
+        <Button Grid.Column="0" Content="Powrót" Width="150" VerticalAlignment="Bottom"
+                HorizontalAlignment="Center" Margin="0,0,0,10" Click="Powrot_Menu_Glowne"/>
+        
+        <Button Grid.Column="0" Content="Zapisz Notatkę" Width="150" VerticalAlignment="Bottom"
+                HorizontalAlignment="Center" Margin="0,0,0,40" Click="Zapisz_Notatke"/>
+        
+        <Button Grid.Column="0" Content="Wybierz Notatkę" Width="150" VerticalAlignment="Bottom"
+        HorizontalAlignment="Center" Margin="0,0,0,70"/>
+        
+        <ListBox Name="ListaNotatek" Grid.Column="0" VerticalAlignment="Top"
+                   HorizontalAlignment="Left" Margin="10,30,0,0" SelectionChanged="Wybor_Notatki"/>
+        
+    </Grid>
+</Window>
