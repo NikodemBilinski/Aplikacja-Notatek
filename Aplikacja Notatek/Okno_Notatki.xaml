@@ -26,10 +26,10 @@
                 HorizontalAlignment="Center" Margin="0,0,0,40" Click="Zapisz_Notatke"/>
         
         <Button Grid.Column="0" Content="Wybierz Notatkę" Width="150" VerticalAlignment="Bottom"
-        HorizontalAlignment="Center" Margin="0,0,0,70"/>
+        HorizontalAlignment="Center" Margin="0,0,0,70" Click="Wybor_Notatki"/>
         
-        <ListBox Name="ListaNotatek" Grid.Column="0" VerticalAlignment="Top"
-                   HorizontalAlignment="Left" Margin="10,30,0,0" SelectionChanged="Wybor_Notatki"/>
+        <TextBlock Name="ListaNotatek" Grid.Column="0" VerticalAlignment="Top"
+                   HorizontalAlignment="Left" Margin="10,30,0,0" Text="chuj"/>
         
     </Grid>
 </Window>

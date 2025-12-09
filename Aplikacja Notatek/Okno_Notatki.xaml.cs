@@ -21,13 +21,11 @@ namespace Aplikacja_Notatek
     public partial class Okno_Notatki : Window
     {
         private int counternotatki = 0;
-
-        private ObservableCollection<string> notatki = new ObservableCollection<string>();
         public Okno_Notatki()
         {
             InitializeComponent();
 
-            ListaNotatek.ItemsSource = notatki;
+            
         }
         private void Zapisz_Notatke(object sender, RoutedEventArgs e)
         {
@@ -35,8 +33,6 @@ namespace Aplikacja_Notatek
             string Tekst_Notatki = PoleNotatki.Text;
 
             File.WriteAllText("Notatka" + counternotatki + ".txt", Tekst_Notatki);
-
-            notatki.Add("Notatka" + counternotatki + ".txt");
             counternotatki++;
 
             MessageBox.Show("Notatka została zapisana!");
@@ -47,20 +43,16 @@ namespace Aplikacja_Notatek
             this.Close();
         }
 
-        private void Wybor_Notatki(object sender, SelectionChangedEventArgs e)
+        private void Wybor_Notatki(object sender, RoutedEventArgs e)
         {
-            if(ListaNotatek.SelectedItem != null)
+            while (File.Exists("Notatka" + counternotatki + ".txt"))
             {
-                string wybranaNotatka = ListaNotatek.SelectedItem.ToString();
-
-                Console.Write(wybranaNotatka);
-                string plik = wybranaNotatka;  
-                if(File.Exists(plik))
-                {
-                    string tekstNotatki = File.ReadAllText(plik);
-                    PoleNotatki.Text = tekstNotatki;
-                }
+                ListaNotatek.Text += "Notatka" + counternotatki + ".txt \n";
+                counternotatki++;
             }
+
+            
+           
         }
     }
 }
