@@ -21,9 +21,6 @@ namespace Aplikacja_Notatek
     /// </summary>
     public partial class Okno_Notatki : Window
     {
-        private int counternotatki = 0;
-        private int numberofnotes = 0;
-
         private string[] notatki = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.txt");
 
         public Okno_Notatki()
