@@ -24,43 +24,32 @@ namespace Aplikacja_Notatek
         private int counternotatki = 0;
         private int numberofnotes = 0;
 
+        private string[] notatki = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.txt");
+
         public Okno_Notatki()
         {
-
             InitializeComponent();
-            while (File.Exists("Notatka" + counternotatki + ".txt") == true)
+
+            if (notatki.Length > 0)
             {
-                ListaNotatek.Items.Add("Notatka" + counternotatki + ".txt \n");
-                counternotatki++;
+                Odswiez_Notatki();
             }
-            counternotatki = ListaNotatek.Items.Count;
+
         }
         private void Zapisz_Notatke(object sender, RoutedEventArgs e)
         {
-            
+
+
             string Tekst_Notatki = PoleNotatki.Text;
-            string temp;
-            if(ListaNotatek.Items.Count != 0)
+
+            if (ListaNotatek.SelectedItem != null)
             {
-                temp = ListaNotatek.SelectedItem.ToString();
-                temp = Regex.Match(temp, @"\d+").Value;
+                string wybrana_notatka = ListaNotatek.SelectedItem.ToString();
 
-                counternotatki = int.Parse(temp);
+                File.WriteAllText(wybrana_notatka, Tekst_Notatki);
+
+                Odswiez_Notatki();
             }
-            
-
-            File.WriteAllText("Notatka" + counternotatki + ".txt", Tekst_Notatki);
-            numberofnotes++;
-
-            MessageBox.Show("Notatka została zapisana!");
-
-            counternotatki = ListaNotatek.Items.Count;
-            while (File.Exists("Notatka" + counternotatki + ".txt") == true)
-            {
-                ListaNotatek.Items.Add("Notatka" + counternotatki + ".txt \n");
-                counternotatki++;
-            }
-            counternotatki = ListaNotatek.Items.Count;
 
         }
 
@@ -72,11 +61,59 @@ namespace Aplikacja_Notatek
         private void Wybor_Notatki(object sender, RoutedEventArgs e)
         {
             string wybor = ListaNotatek.SelectedItem.ToString();
-            if(wybor != null)
+            if (wybor != null)
             {
                 PoleNotatki.Text = File.ReadAllText(wybor.Trim());
             }
 
+        }
+
+        private void Nowa_Notatka(object sender, RoutedEventArgs e)
+        {
+            string nazwa = nazwa_notatki.Text;
+
+            if (nazwa == "Wpisz Nazwę Notatki" || nazwa == null)
+            {
+                MessageBox.Show("Podaj nazwę notatki");
+            }
+            else if (notatki.Length == 0)
+            {
+                File.WriteAllLines(nazwa + ".txt", new string[0]);
+                notatki = notatki.Append(nazwa + ".txt").ToArray();
+                Odswiez_Notatki();
+            }
+            else
+            {
+                foreach (String notatka in notatki)
+                {
+                    if (System.IO.Path.GetFileName(notatka) == nazwa + ".txt")
+                    {
+                        MessageBox.Show("Notatka o takiej nazwie już istnieje");
+
+                    }
+                    else
+                    {
+                        File.WriteAllLines(nazwa + ".txt", new string[0]);
+                        notatki = notatki.Append(nazwa + ".txt").ToArray();
+                        Odswiez_Notatki();
+                    }
+                }
+
+            }
+        }
+
+        private void Odswiez_Notatki()
+        {
+            // pobierz wszystkie notatki z folderu
+            notatki = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.txt");
+
+            foreach (String notatka in notatki)
+            {
+                if (ListaNotatek.Items.Contains(System.IO.Path.GetFileName(notatka)) == false)
+                {
+                    ListaNotatek.Items.Add(System.IO.Path.GetFileName(notatka));
+                }
+            }
         }
     }
 }
