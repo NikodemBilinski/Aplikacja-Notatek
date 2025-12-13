@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Aplikacja_Notatek"
         mc:Ignorable="d"
-        Title="Okno_Notatki" Height="450" Width="470" >
+        Title="Notatki" Height="450" Width="470" MinHeight="450" MinWidth="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="170" />
@@ -14,10 +14,10 @@
 
 
 
-        <TextBlock Grid.Column="0" Text="LISTA NOTATEK" VerticalAlignment="Top"
-                 HorizontalAlignment="Center" MaxWidth="630"/>
+        <TextBlock Text="LISTA NOTATEK" VerticalAlignment="Top"
+                 HorizontalAlignment="Center"/>
 
-        <TextBox x:Name="PoleNotatki" Grid.Column="1" Text="TRESC NOTATKI"/>
+        <TextBox x:Name="PoleNotatki" Grid.Column="1"/>
 
         <Button Grid.Column="0" Content="Powrót" Width="150" VerticalAlignment="Bottom"
                 HorizontalAlignment="Center" Margin="0,0,0,10" Click="Powrot_Menu_Glowne"/>
@@ -26,13 +26,16 @@
                 HorizontalAlignment="Center" Margin="0,0,0,40" Click="Zapisz_Notatke"/>
 
         <Button Grid.Column="0" Content="Nowa Notatka" Width="150" VerticalAlignment="Bottom"
-        HorizontalAlignment="Center" Margin="0,0,0,70" Click="Nowa_Notatka"/>
+        HorizontalAlignment="Center" Margin="0,0,0,100" Click="Nowa_Notatka"/>
+
+        <Button Grid.Column="0" Content="Usuń Notatkę" Width="150" VerticalAlignment="Bottom"
+                HorizontalAlignment="Center" Margin="0,0,0,70" Click="Usun_Notatke"/>
 
         <TextBox Name="nazwa_notatki" Grid.Column="0" VerticalAlignment="Bottom"
-                   HorizontalAlignment="Center" Margin="0,0,0,100" Width="150" Text="Wpisz Nazwę Notatki"/>
+                   HorizontalAlignment="Center" Margin="0,0,0,130" Width="150" Text="Wpisz Nazwę Notatki"/>
 
         <ListBox Name="ListaNotatek" Grid.Column="0" VerticalAlignment="Top"
-                   HorizontalAlignment="Left" Margin="10,30,0,0" SelectionChanged="Wybor_Notatki"/>
+                   HorizontalAlignment="Left" Margin="10,30,0,0" SelectionChanged="Wybor_Notatki" Height="230" Width="150"/>
 
     </Grid>
 </Window>

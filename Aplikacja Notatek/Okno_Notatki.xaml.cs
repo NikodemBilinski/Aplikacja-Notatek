@@ -57,6 +57,8 @@ namespace Aplikacja_Notatek
 
         private void Wybor_Notatki(object sender, RoutedEventArgs e)
         {
+            Odswiez_Notatki();
+
             string wybor = ListaNotatek.SelectedItem.ToString();
             if (wybor != null)
             {
@@ -99,6 +101,13 @@ namespace Aplikacja_Notatek
             }
         }
 
+        private void Usun_Notatke(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            var oknoUsun = new OknoUsun();
+            oknoUsun.Show();
+
+        }
         private void Odswiez_Notatki()
         {
             // pobierz wszystkie notatki z folderu
